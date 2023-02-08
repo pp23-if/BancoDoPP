@@ -77,6 +77,18 @@ public class ExtratoDAO {
     }
     
   
+     public void LimpaArrayListExtrato()
+     {
+         for (Iterator<Extrato> iterator = adicionaExtrato.iterator(); iterator.hasNext();) {
+             Extrato next = iterator.next();
+             
+             if(next != null)
+             {
+                 iterator.remove();
+             }
+             
+         }
+     }
  
     
  }

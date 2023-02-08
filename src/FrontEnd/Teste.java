@@ -32,6 +32,7 @@ public class Teste {
             ccd.limpaArrayListConta();
             cdao.buscaClienteEInsereNaConta(cond, ccd);
             
+            exd.LimpaArrayListExtrato();
             
             opcao = mt.menuInicial();
             

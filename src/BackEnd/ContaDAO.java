@@ -120,6 +120,16 @@ public final class ContaDAO {
         }
     }
     
+    
+    public void buscaContaEInsereNoExtrato(ConexaoDAO cond, ContaDAO ccd)
+    {
+        for (Conta conta : adicionaconta) {
+             
+             
+        }
+    }
+    
+    
  /*----------------------------------------------------------------------------------------------------------*/
     
     
