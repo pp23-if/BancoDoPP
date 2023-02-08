@@ -2,14 +2,11 @@
 package BackEnd;
 
 import java.time.LocalDateTime;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ExtratoDAO {
     
-  Scanner scanner = new Scanner(System.in); 
-  
   ArrayList<Extrato> adicionaExtrato = new ArrayList();  
   
     public ExtratoDAO()

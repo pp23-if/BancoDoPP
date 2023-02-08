@@ -523,9 +523,7 @@ public final class MenuPrincipal {
     
     public boolean Excluir(String login, String senha, ClienteDAO cd, ContaDAO ccd, ExtratoDAO exd)
     {
-        exd.excluiExtrato(login, senha);
-        ccd.excluiConta(login, senha);
-        cd.excluiDadosCliente(login, senha);
+        
         
         System.out.println("\nConta excluida com Sucesso!!!!!\n");
         return true;
