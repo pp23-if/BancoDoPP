@@ -33,6 +33,7 @@ public class Teste {
             cdao.buscaClienteEInsereNaConta(cond, ccd);
             
             exd.LimpaArrayListExtrato();
+            ccd.buscaContaEInsereNoExtrato(cond, exd);
             
             opcao = mt.menuInicial();
             
@@ -74,10 +75,12 @@ public class Teste {
                 
                 case 3:
                 {
-                    System.out.println("\nMostrando os clientes Cadastrados:\n");
+                    System.out.println("\n******************** Mostrando os clientes Cadastrados: ************************\n");
                     cdao.mostraCadastros();
-                    System.out.println("\nMostrando As Contas Bancarias:\n");
+                    System.out.println("\n=================== Mostrando As Contas Bancarias:\n ==============================");
                     ccd.mostraTodasContas();
+                    System.out.println("\n$$$$$$$$$$$$$$$$$$$$$$$ Mostrando Todos os Extratos:\n $$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                    exd.mostraTodosExtratos();
                     break;
                 }
                 

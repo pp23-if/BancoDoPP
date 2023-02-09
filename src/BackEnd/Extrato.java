@@ -1,16 +1,15 @@
 
 package BackEnd;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Extrato {
     private String tipotransacao;
     private double valor;
-    private LocalDateTime datatransacao;
+    private Date datatransacao;
     private Conta conta;
-    
+    private final SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
    
 
     public String getTipotransacao() {
@@ -29,11 +28,11 @@ public class Extrato {
         this.valor = valor;
     }
 
-    public LocalDateTime getDatatransacao() {
+    public Date getDatatransacao() {
         return datatransacao;
     }
 
-    public void setDatatransacao(LocalDateTime datatransacao) {
+    public void setDatatransacao(Date datatransacao) {
         this.datatransacao = datatransacao;
     }
 
@@ -44,16 +43,15 @@ public class Extrato {
     public void setConta(Conta conta) {
         this.conta = conta;
     }
-    
 
-    public Extrato(String tipotransacao, double valor, LocalDateTime datatransacao, Conta conta) {
+    public Extrato(String tipotransacao, double valor, Date datatransacao, Conta conta) {
         this.tipotransacao = tipotransacao;
         this.valor = valor;
         this.datatransacao = datatransacao;
         this.conta = conta;
     }
+    
 
-  
    
     @Override
     public String toString() {
@@ -61,7 +59,7 @@ public class Extrato {
                 this.conta.getCliente().getCpf() + "\n" + "Conta: " +
                 this.conta.getNumeroconta() + "\n" + "Valor: " +
                 this.valor  + "\n" + "Tipo de Transacao: " + this.tipotransacao + 
-                "\n" + "Data: e Hora: " + this.datatransacao.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)) + "\n";
+                "\n" + "Data: e Hora: " + this.fd.format(datatransacao) + "\n";
     }
 
 }

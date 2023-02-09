@@ -121,11 +121,10 @@ public final class ContaDAO {
     }
     
     
-    public void buscaContaEInsereNoExtrato(ConexaoDAO cond, ContaDAO ccd)
+    public void buscaContaEInsereNoExtrato(ConexaoDAO cond, ExtratoDAO e)
     {
         for (Conta conta : adicionaconta) {
-             
-             
+             e.executaBuscaextrato(cond, conta);
         }
     }
     
