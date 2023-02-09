@@ -597,7 +597,8 @@ public class ClienteDAO {
     }
     
     
-    public boolean atualizaNomeCliente(String login, String senha, String novoNome, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaNomeCliente(String login, String senha, String novoNome, ConexaoDAO cond, 
+            ContaDAO ccd, ExtratoDAO exd)
     {
         for (Cliente c : adicionacliente) {
             if(c.getLogin().equals(login) && c.getSenha().equals(senha))
@@ -608,6 +609,8 @@ public class ClienteDAO {
                      executaBuscaClienteNoBancoDeDados(cond);
                      ccd.limpaArrayListConta();
                      buscaClienteEInsereNaConta(cond, ccd);
+                     exd.LimpaArrayListExtrato();
+                     ccd.buscaContaEInsereNoExtrato(cond, exd);
                      return true;
                 } 
             }
@@ -617,7 +620,8 @@ public class ClienteDAO {
     }
     
     
-    public boolean atualizaCpfCliente(String login, String senha, String novoCpf, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaCpfCliente(String login, String senha, String novoCpf, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
         for (Cliente c : adicionacliente) {
             if(c.getLogin().equals(login) && c.getSenha().equals(senha))
@@ -628,6 +632,8 @@ public class ClienteDAO {
                      executaBuscaClienteNoBancoDeDados(cond);
                      ccd.limpaArrayListConta();
                      buscaClienteEInsereNaConta(cond, ccd);
+                     exd.LimpaArrayListExtrato();
+                     ccd.buscaContaEInsereNoExtrato(cond, exd);
                      return true; 
                 }
             }
@@ -637,7 +643,8 @@ public class ClienteDAO {
     }
     
     
-    public boolean atualizaEnderecoCliente(String login, String senha, Endereco novoEndereco, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaEnderecoCliente(String login, String senha, Endereco novoEndereco, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
         for (Cliente c : adicionacliente) {
             if(c.getLogin().equals(login) && c.getSenha().equals(senha))
@@ -648,6 +655,8 @@ public class ClienteDAO {
                      executaBuscaClienteNoBancoDeDados(cond);
                      ccd.limpaArrayListConta();
                      buscaClienteEInsereNaConta(cond, ccd);
+                     exd.LimpaArrayListExtrato();
+                     ccd.buscaContaEInsereNoExtrato(cond, exd);
                      return true; 
                  }
             }
@@ -656,7 +665,8 @@ public class ClienteDAO {
         
     }
     
-    public boolean atualizaTelefoneCliente(String login, String senha, String novoTelefone, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaTelefoneCliente(String login, String senha, String novoTelefone, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
         for (Cliente c : adicionacliente) {
             if(c.getLogin().equals(login) && c.getSenha().equals(senha))
@@ -667,6 +677,8 @@ public class ClienteDAO {
                      executaBuscaClienteNoBancoDeDados(cond);
                      ccd.limpaArrayListConta();
                      buscaClienteEInsereNaConta(cond, ccd);
+                     exd.LimpaArrayListExtrato();
+                     ccd.buscaContaEInsereNoExtrato(cond, exd); 
                      return true; 
                  }  
             }
@@ -677,7 +689,7 @@ public class ClienteDAO {
     
     
     
-    public boolean atualizaDataCliente(String login, String senha, String novaData, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaDataCliente(String login, String senha, String novaData, ConexaoDAO cond, ContaDAO ccd, ExtratoDAO exd)
     {
         for (Cliente c : adicionacliente) {
             if(c.getLogin().equals(login) && c.getSenha().equals(senha))
@@ -688,6 +700,8 @@ public class ClienteDAO {
                      executaBuscaClienteNoBancoDeDados(cond);
                      ccd.limpaArrayListConta();
                      buscaClienteEInsereNaConta(cond, ccd);
+                     exd.LimpaArrayListExtrato();
+                     ccd.buscaContaEInsereNoExtrato(cond, exd); 
                      return true;  
               }
             }
@@ -696,21 +710,6 @@ public class ClienteDAO {
     }
     
     
-    public boolean excluiDadosCliente(String login, String senha)
-    {
-        boolean x = false;
-        for (Iterator<Cliente> iterator = adicionacliente.iterator(); iterator.hasNext();) {
-            Cliente next = iterator.next();
-            
-            if(next.getLogin().equals(login) && next.getSenha().equals(senha))
-            {
-                iterator.remove();
-                x = true;
-            }
-            
-        }
-        return x;
-    }
    /*----------------------------------------------------------------------------------------------------*/
     
     

@@ -30,7 +30,7 @@ public final class MenuPrincipal {
                case 1:
                {
                   opcad = mt.menuCadastro();
-                  opcoesCadastro(opcad,login, senha, cd, cond, ccd); 
+                  opcoesCadastro(opcad,login, senha, cd, cond, ccd, exd); 
                   if(reslogin == true || ressenha == true)
                   {
                       opmp = 0;
@@ -64,7 +64,7 @@ public final class MenuPrincipal {
    
     /*----------------- BLOCO DE FUNCOES COM SWITCH CASE DE CADA OPCAO ------------------*/
     
-    public void opcoesCadastro(int op,String login, String senha, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public void opcoesCadastro(int op,String login, String senha, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd, ExtratoDAO exd)
     {
         
         
@@ -114,7 +114,7 @@ public final class MenuPrincipal {
                              System.out.println("\n");
                              novoNome = cd.ValidaNome(novoNome);
                              
-                             atualizaNome(login, senha, novoNome, cd, cond, ccd);
+                             atualizaNome(login, senha, novoNome, cd, cond, ccd, exd);
                            break; 
                         }
                         
@@ -125,7 +125,7 @@ public final class MenuPrincipal {
                              System.out.println("\n");
                              novoCpf = cd.ValidaCpf(novoCpf);
                              
-                             atualizaCpf(login, senha, novoCpf, cd, cond, ccd);
+                             atualizaCpf(login, senha, novoCpf, cd, cond, ccd, exd);
                            break; 
                         }
                         
@@ -164,7 +164,7 @@ public final class MenuPrincipal {
                              
                              Endereco novoEndereco = new Endereco(novaRua, numero, novoBairro, novaCidade, novoEstado, novoCep);
                              
-                             atualizaEndereco(login, senha, novoEndereco, cd, cond, ccd);
+                             atualizaEndereco(login, senha, novoEndereco, cd, cond, ccd, exd);
                            break; 
                         }
                         
@@ -175,7 +175,7 @@ public final class MenuPrincipal {
                              System.out.println("\n");
                              novoTelefone = cd.ValidaTelefone(novoTelefone);
                              
-                             atualizaTelefone(login, senha, novoTelefone, cd, cond, ccd);
+                             atualizaTelefone(login, senha, novoTelefone, cd, cond, ccd, exd);
                            break; 
                         }
                         
@@ -186,7 +186,7 @@ public final class MenuPrincipal {
                              System.out.println("\n"); 
                              
                              novaDatanasc = cd.ValidaData(novaDatanasc);
-                             atualizaDataNascimento(login, senha, novaDatanasc, cd, cond, ccd);
+                             atualizaDataNascimento(login, senha, novaDatanasc, cd, cond, ccd, exd);
                              
                              break;
                         }
@@ -236,7 +236,7 @@ public final class MenuPrincipal {
                 double depostito = Double.parseDouble(dep);
                 System.out.println("\n");
                
-                Depositar(login, senha, ccd, depostito, cond, cd);
+                Depositar(login, senha, ccd, depostito, cond, cd, exd);
                 
                 break;
             }
@@ -248,7 +248,7 @@ public final class MenuPrincipal {
                 double saque = Double.parseDouble(sq);
                 System.out.println("\n");
                 
-                Sacar(login, senha, ccd, saque, cond, cd);
+                Sacar(login, senha, ccd, saque, cond, cd, exd);
                 
                
                break; 
@@ -267,7 +267,7 @@ public final class MenuPrincipal {
                 double transferencia = Double.parseDouble(trans);
                 System.out.println("\n");
                 
-                Transferir(login, senha, ccd, transferencia, numeroconta, cond, cd);
+                Transferir(login, senha, ccd, transferencia, numeroconta, cond, cd, exd);
                 
                 System.out.println("\n");
                break; 
@@ -276,7 +276,8 @@ public final class MenuPrincipal {
             case 8:
             {
                 exd.mostraExtratoContaCliente(login, senha);
-                System.out.println("Saldo Aualizado: "+exd.extratoAtualizado(login, senha));
+                ccd.mostraSaldoContaCliente(login, senha);
+               
            
                 break;
             }
@@ -347,9 +348,10 @@ public final class MenuPrincipal {
     
     
     
-    public boolean atualizaNome(String login, String senha, String novoNome, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaNome(String login, String senha, String novoNome, ClienteDAO cd, ConexaoDAO cond, 
+            ContaDAO ccd, ExtratoDAO exd)
     {
-       boolean Nomeatualizado = cd.atualizaNomeCliente(login, senha, novoNome, cond, ccd);
+       boolean Nomeatualizado = cd.atualizaNomeCliente(login, senha, novoNome, cond, ccd, exd);
        
        if(Nomeatualizado == true)
        {
@@ -365,9 +367,10 @@ public final class MenuPrincipal {
     
     
     
-    public boolean atualizaCpf(String login, String senha, String novoCpf, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaCpf(String login, String senha, String novoCpf, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
-       boolean cpfatualizado = cd.atualizaCpfCliente(login, senha, novoCpf, cond, ccd);
+       boolean cpfatualizado = cd.atualizaCpfCliente(login, senha, novoCpf, cond, ccd, exd);
        
        if(cpfatualizado == true)
        {
@@ -383,9 +386,10 @@ public final class MenuPrincipal {
     
     
     
-    public boolean atualizaEndereco(String login, String senha, Endereco novoEndereco, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaEndereco(String login, String senha, Endereco novoEndereco, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
-       boolean enderecoatualizado = cd.atualizaEnderecoCliente(login, senha, novoEndereco, cond, ccd);
+       boolean enderecoatualizado = cd.atualizaEnderecoCliente(login, senha, novoEndereco, cond, ccd, exd);
        
        if(enderecoatualizado == true)
        {
@@ -400,9 +404,10 @@ public final class MenuPrincipal {
     } 
     
     
-    public boolean atualizaTelefone(String login, String senha, String novoTelefone, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaTelefone(String login, String senha, String novoTelefone, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
-       boolean telefoneatualizado = cd.atualizaTelefoneCliente(login, senha, novoTelefone, cond, ccd);
+       boolean telefoneatualizado = cd.atualizaTelefoneCliente(login, senha, novoTelefone, cond, ccd, exd);
        
        if(telefoneatualizado == true)
        {
@@ -417,9 +422,10 @@ public final class MenuPrincipal {
     }     
     
     
-    public boolean atualizaDataNascimento(String login, String senha, String novaData, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd)
+    public boolean atualizaDataNascimento(String login, String senha, String novaData, ClienteDAO cd, ConexaoDAO cond, ContaDAO ccd,
+            ExtratoDAO exd)
     {
-       boolean dataatualizada = cd.atualizaDataCliente(login, senha, novaData, cond, ccd);
+       boolean dataatualizada = cd.atualizaDataCliente(login, senha, novaData, cond, ccd, exd);
        
        if(dataatualizada == true)
        {
@@ -469,9 +475,9 @@ public final class MenuPrincipal {
         System.out.println(c);
     }
     
-    public boolean Depositar(String login, String senha, ContaDAO ccd, double valor, ConexaoDAO cond, ClienteDAO cd)
+    public boolean Depositar(String login, String senha, ContaDAO ccd, double valor, ConexaoDAO cond, ClienteDAO cd, ExtratoDAO exd)
     {
-        boolean verificadeposito = ccd.depositarContaCliente(login, senha, valor, cond, cd, ccd);
+        boolean verificadeposito = ccd.depositarContaCliente(login, senha, valor, cond, cd, ccd,exd);
         
         if(verificadeposito == true)
         {
@@ -486,9 +492,9 @@ public final class MenuPrincipal {
         
     }
     
-    public boolean Sacar(String login, String senha, ContaDAO ccd, double valor, ConexaoDAO cond, ClienteDAO cd)
+    public boolean Sacar(String login, String senha, ContaDAO ccd, double valor, ConexaoDAO cond, ClienteDAO cd, ExtratoDAO exd)
     {
-        boolean verificasaque = ccd.sacarContaCliente(login, senha, valor, cond, cd, ccd);
+        boolean verificasaque = ccd.sacarContaCliente(login, senha, valor, cond, cd, ccd,exd);
         
         if(verificasaque == true)
         {
@@ -503,9 +509,10 @@ public final class MenuPrincipal {
        
     }
     
-    public boolean Transferir(String login, String senha, ContaDAO ccd, double valor, int numeroconta, ConexaoDAO cond, ClienteDAO cd)
+    public boolean Transferir(String login, String senha, ContaDAO ccd, double valor, int numeroconta, 
+            ConexaoDAO cond, ClienteDAO cd, ExtratoDAO exd)
     {
-        boolean verificatranseferencia = ccd.transfereContaCliente(login, senha, valor,numeroconta,cond,cd,ccd);
+        boolean verificatranseferencia = ccd.transfereContaCliente(login, senha, valor,numeroconta,cond,cd,ccd,exd);
         
         if(verificatranseferencia == true)
         {

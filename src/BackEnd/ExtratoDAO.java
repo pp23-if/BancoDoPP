@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -83,17 +82,6 @@ public class ExtratoDAO {
   /*-----------------------------------------------------------------------------------------------------------*/
     
     
-        
-    public void adicionaExtrato(String login, String senha, String tipotransacao, 
-    double valor, LocalDateTime datatransacao, ContaDAO ccd)
-    {
-        //Conta cc = ccd.mostraContaCliente(login, senha);
-        
-       /* Extrato e = new Extrato(tipotransacao, valor, datatransacao, cc);
-        
-        adicionaExtrato.add(e);*/
-        
-    }
     
     public void executaBuscaextrato(ConexaoDAO cond, Conta cc)
     {
@@ -118,16 +106,6 @@ public class ExtratoDAO {
       
     }
     
-    public double extratoAtualizado(String login, String senha)
-    {
-         for (Extrato extrato : adicionaExtrato) {
-            if(extrato.getConta().getCliente().getLogin().equals(login) && extrato.getConta().getCliente().getSenha().equals(senha))
-            {
-               return extrato.getConta().getSaldo();
-            }
-        }
-      return 0;
-    }
     
   
      public void LimpaArrayListExtrato()

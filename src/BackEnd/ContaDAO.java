@@ -621,7 +621,8 @@ public final class ContaDAO {
     
     
  /*------------------------ BLOCO DE FUNCOES QUE RECEBEM O RESULTADO DE TRANSACOES BANCARIAS EXECUTADAS NO BANCO DE DADOS ---------------- */  
-     public boolean depositarContaCliente (String login,String senha, double valor, ConexaoDAO cond, ClienteDAO cd, ContaDAO ccd)
+     public boolean depositarContaCliente (String login,String senha, double valor, ConexaoDAO cond, ClienteDAO cd, 
+             ContaDAO ccd, ExtratoDAO exd)
      {
          
         for (Conta cc : adicionaconta) {
@@ -633,6 +634,8 @@ public final class ContaDAO {
                     {
                         limpaArrayListConta();
                         cd.buscaClienteEInsereNaConta(cond, ccd);
+                        exd.LimpaArrayListExtrato();
+                        exd.executaBuscaextrato(cond, cc);
                         return true;
                     }
  
@@ -644,7 +647,8 @@ public final class ContaDAO {
        
      }
     
-    public boolean sacarContaCliente (String login,String senha, double valor, ConexaoDAO cond, ClienteDAO cd, ContaDAO ccd)
+    public boolean sacarContaCliente (String login,String senha, double valor, ConexaoDAO cond, ClienteDAO cd, 
+            ContaDAO ccd, ExtratoDAO exd)
      {
         for (Conta cc : adicionaconta) {
             if(cc.getCliente().getLogin().equals(login) && cc.getCliente().getSenha().equals(senha))
@@ -655,6 +659,8 @@ public final class ContaDAO {
                     {
                         limpaArrayListConta();
                         cd.buscaClienteEInsereNaConta(cond, ccd); 
+                        exd.LimpaArrayListExtrato();
+                        exd.executaBuscaextrato(cond, cc);
                         return true; 
                     }
                    
@@ -677,7 +683,7 @@ public final class ContaDAO {
      }
     
     public boolean transfereContaCliente(String login, String senha, double valor, 
-            int numeroconta, ConexaoDAO cond, ClienteDAO cd, ContaDAO ccd)
+            int numeroconta, ConexaoDAO cond, ClienteDAO cd, ContaDAO ccd, ExtratoDAO exd)
     {
         Conta c = buscaContaClienteParaTransferir(numeroconta);
         
@@ -696,6 +702,8 @@ public final class ContaDAO {
                        {
                            limpaArrayListConta();
                            cd.buscaClienteEInsereNaConta(cond, ccd); 
+                           exd.LimpaArrayListExtrato();
+                           exd.executaBuscaextrato(cond, cc);
                            return true; 
                        }
                       
