@@ -79,6 +79,37 @@ public class ExtratoDAO {
         
           return x != false;
     }
+    
+    
+    private boolean ExcluiRegistrosNoBancoDeDados(ConexaoDAO cond, Conta cc)
+    {
+        boolean x = true;
+        Connection conn; 
+        PreparedStatement pstm;
+        
+       
+        String sql = "delete from clientes where cpf = ?";
+       
+        conn = cond.ConectaBD();
+        
+        try 
+        {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, cc.getCliente().getCpf());
+            pstm.execute();
+           
+            pstm.close();
+            
+        } 
+        catch (SQLException erro) 
+        {
+             System.out.println("\n Nao foi possivel Buscar os dados de Extratos das contas dos clientes no banco de dados!\n" + erro); 
+             x = false;
+        }
+        
+          return x != false;
+    }
+    
   /*-----------------------------------------------------------------------------------------------------------*/
     
     
@@ -86,6 +117,16 @@ public class ExtratoDAO {
     public void executaBuscaextrato(ConexaoDAO cond, Conta cc)
     {
         BuscaExtratoNoBancoDeDados(cond, cc);
+    }
+    
+    public void executaExcluiRegistrosNoBancoDeDados(String login, String senha, ConexaoDAO cond)
+    {
+        for (Extrato extrato : adicionaExtrato) {
+            if(extrato.getConta().getCliente().getLogin().equals(login))
+            {
+                ExcluiRegistrosNoBancoDeDados(cond, extrato.getConta());
+            }
+        }
     }
     
     public void mostraTodosExtratos()

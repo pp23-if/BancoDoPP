@@ -290,7 +290,7 @@ public final class MenuPrincipal {
             
             case 10:
             {
-                resdelete = Excluir(login, senha, cd, ccd, exd);
+                resdelete = Excluir(login, senha, cd, ccd, exd, cond);
                 break;
             }
         }
@@ -528,10 +528,9 @@ public final class MenuPrincipal {
     }
     
     
-    public boolean Excluir(String login, String senha, ClienteDAO cd, ContaDAO ccd, ExtratoDAO exd)
+    public boolean Excluir(String login, String senha, ClienteDAO cd, ContaDAO ccd, ExtratoDAO exd, ConexaoDAO cond)
     {
-        
-        
+        exd.executaExcluiRegistrosNoBancoDeDados(login, senha, cond);
         System.out.println("\nConta excluida com Sucesso!!!!!\n");
         return true;
     }
